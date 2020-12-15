@@ -191,19 +191,6 @@
             "mode": "query"
           }
         },
-        "e4e9c9bf84f3455aae4e9196aa426804": {
-          "id": "e4e9c9bf84f3455aae4e9196aa426804",
-          "stepType": "TextOutput",
-          "name": "Incorrect Guess",
-          "value": {
-            "value": "That letter wasn't correct",
-            "mode": "simple"
-          },
-          "applicability": {
-            "value": "",
-            "mode": "query"
-          }
-        },
         "f5d08950971d41418cc0baf2e8954dc2": {
           "id": "f5d08950971d41418cc0baf2e8954dc2",
           "stepType": "Prompt",
@@ -240,9 +227,28 @@
           "id": "ad79a527b4ff46fcb9a03c02fa350a30",
           "stepType": "Decision",
           "name": "Decision"
+        },
+        "24cbae81fdd24c6aa051d74adb13f415": {
+          "id": "24cbae81fdd24c6aa051d74adb13f415",
+          "stepType": "ScriptOutput",
+          "name": "Incorrect Guess",
+          "output_type": "single_part",
+          "script": "(function execute() {\n \n      var game_object = JSON.parse(vaVars.game_data);\n      if (game_object.guesses_left == 1) {\n          return gs.getMessage(\"That was incorrect.  You've only got one guess left!\");\n      } else {\n          return gs.getMessage(\"That was incorrect.  You have {0} guesses remaining.\", [game_object.guesses_left]);\n      }\n})()\n",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
         }
       },
       "edges": [
+        {
+          "id": "a8258a0d72434966978cbf44a9872137",
+          "edgeType": "Edge",
+          "source": "24cbae81fdd24c6aa051d74adb13f415",
+          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "sourcePort": "",
+          "targetPort": ""
+        },
         {
           "id": "21938c2beeb54e2792af54c215d3f37f",
           "edgeType": "Edge",
@@ -347,27 +353,6 @@
           "targetPort": ""
         },
         {
-          "id": "1148ac1347d34fd69e9aec3e219ce580",
-          "edgeType": "Branch",
-          "source": "65989399ca734e679754c9851b372ceb",
-          "target": "e4e9c9bf84f3455aae4e9196aa426804",
-          "sourcePort": "",
-          "targetPort": "",
-          "expression": {
-            "mode": "script",
-            "value": "(function execute() {\n    return vaVars.game_state == 'Incorrect';\n})()\n"
-          },
-          "label": "Incorrect Guess"
-        },
-        {
-          "id": "5a369c28aaca48bf99f6d084ed655a2c",
-          "edgeType": "Edge",
-          "source": "e4e9c9bf84f3455aae4e9196aa426804",
-          "target": "1bd0512724c7425e950ebdbd1206231c",
-          "sourcePort": "",
-          "targetPort": ""
-        },
-        {
           "id": "93c386985d694c59b1482a780615728c",
           "edgeType": "Branch",
           "source": "65989399ca734e679754c9851b372ceb",
@@ -421,6 +406,19 @@
             "mode": "query"
           },
           "label": "Play Again - Yes"
+        },
+        {
+          "id": "1148ac1347d34fd69e9aec3e219ce580",
+          "edgeType": "Branch",
+          "source": "65989399ca734e679754c9851b372ceb",
+          "target": "24cbae81fdd24c6aa051d74adb13f415",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.game_state == 'Incorrect';\n})()\n"
+          },
+          "label": "Incorrect Guess"
         }
       ]
     }
@@ -496,14 +494,14 @@
         <sys_created_on>2020-12-15 13:52:29</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_id>6133bf5e2f812010a34c7f572799b685</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Hangman</sys_name>
         <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
         <sys_policy/>
         <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
         <sys_update_name>sys_cb_topic_6133bf5e2f812010a34c7f572799b685</sys_update_name>
         <sys_updated_by>aidan.cooper</sys_updated_by>
-        <sys_updated_on>2020-12-15 16:09:07</sys_updated_on>
+        <sys_updated_on>2020-12-15 16:29:22</sys_updated_on>
         <type>STANDARD</type>
         <variables/>
     </sys_cb_topic>
