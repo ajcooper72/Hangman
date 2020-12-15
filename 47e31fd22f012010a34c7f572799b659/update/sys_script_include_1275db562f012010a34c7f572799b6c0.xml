@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_170623_hangman.Hangman</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>Hangman</name>
+        <script><![CDATA[var Hangman = Class.create();
+
+Hangman._property_prefix = 'x_170623_hangman.words.';
+Hangman.getCategories = function() {
+	var categories = [];
+
+	var category = new GlideRecord('sys_properties');
+	category.addEncodedQuery('nameSTARTSWITH' + Hangman._property_prefix);
+	category.query();
+	while(category.next()) {
+		categories.push(category.getValue('name').substr(Hangman._property_prefix.length).replace('.', ' '));
+	}
+	return categories;
+};
+
+Hangman.prototype = {
+
+	initialize: function(category, game_object) {
+		this.max_guesses = 6;
+		
+		this.category = category != undefined ? category : this.getRandomCategory();
+		if (game_object != undefined) {
+			this.game_object = game_object;
+		} else {
+			var word = category == 'test' ? 'TEST WORD' : this.getWord(this.category).toUpperCase();
+			
+			this.game_object = game_object != undefined ? game_object : {
+				"category": this.category,
+				"word": word,
+				"correct_guesses": [],
+				"incorrect_guesses": [],
+				"guesses_left": this.max_guesses,
+				"last_guess_correct": false,
+				"already_guessed": false,
+				"word_correct": false,
+				"game_over": false,
+				"display": ''
+			};	
+			this.game_object.display = this.getDisplayWord();
+		}
+
+	},
+
+	getDisplayWord: function() {
+		var au = new global.ArrayUtil();
+		var letters = au.unique(this.game_object.word.replaceAll(' ', '').split(''));
+		var display_word = this.game_object.word.split('').join(' ');
+		var remaining = au.diff(letters, this.game_object.correct_guesses);
+		
+		remaining.forEach(function(letter) {
+			display_word = display_word.replaceAll(letter, '_');
+		});
+		
+		return display_word;
+	},
+	
+	guess: function(letter) {
+		var au = new global.ArrayUtil();
+		letter = letter.toUpperCase();
+
+		this.game_object.already_guessed = false;
+		this.game_object.last_guess_correct = false;
+		this.game_object.game_over = false;
+		this.game_object.word_correct = false;
+		
+		var letters = au.unique(this.game_object.word.replace(' ', '').split(''));
+		
+		if (au.contains(this.game_object.correct_guesses, letter) ||
+			au.contains(this.game_object.incorrect_guesses, letter)) {
+			// already guessed this one
+			this.game_object.already_guessed = true;
+		} else if (this.game_object.word.indexOf(letter) > -1) {
+			this.game_object.last_guess_correct = true;
+			this.game_object.correct_guesses.push(letter);
+			this.game_object.correct_guesses = au.unique(this.game_object.correct_guesses).sort();
+
+			var letters_remaining = au.diff(letters, this.game_object.correct_guesses);
+			this.game_object.word_correct = letters_remaining.length == 0;
+			this.game_object.display = this.getDisplayWord();
+
+		} else {
+			this.game_object.last_guess_correct = false;
+			this.game_object.incorrect_guesses.push(letter);
+			this.game_object.guesses_left = this.max_guesses - this.game_object.incorrect_guesses.length;
+			if(this.game_object.incorrect_guesses.length == this.max_guesses) {
+				this.game_object.game_over = true;
+			}
+		}
+
+		return this.game_object;
+	},
+
+	_getGameObject: function() {
+		return this.game_object;
+	},
+
+	_getGameObjectString: function() {
+		return JSON.stringify(this.game_object);
+	},
+	
+	getWord: function(category) {
+		var property = Hangman._property_prefix + category.replace(' ', '.');
+		var words = gs.getProperty(property);
+		words = words.split(',');
+		var word_index = Math.floor(Math.random() * words.length);
+		return words[word_index];
+	},
+
+	getRandomCategory: function() {
+		var categories = Hangman.getCategories();
+		var category_index = Math.floor(Math.random() * categories.length);
+		return categories[category_index];
+	},
+
+	type: 'Hangman'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-15 11:53:05</sys_created_on>
+        <sys_id>1275db562f012010a34c7f572799b6c0</sys_id>
+        <sys_mod_count>50</sys_mod_count>
+        <sys_name>Hangman</sys_name>
+        <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
+        <sys_update_name>sys_script_include_1275db562f012010a34c7f572799b6c0</sys_update_name>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-15 16:20:33</sys_updated_on>
+    </sys_script_include>
+</record_update>

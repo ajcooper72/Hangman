@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <category/>
+        <channels/>
+        <connect_queue/>
+        <description/>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <graph>{
+  "graph_api_version": "1.0.21",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "6025b4f4cb354acd98f89cbcb0400007": {
+          "id": "6025b4f4cb354acd98f89cbcb0400007",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "value": "Welcome to Hangman",
+            "mode": "simple"
+          }
+        },
+        "021feb2a321844288c77753ba963faeb": {
+          "id": "021feb2a321844288c77753ba963faeb",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "75fabd40d79b41f2b9afcad79f7448c2": {
+          "stepType": "ReferenceChoicePrompt",
+          "name": "Get Category",
+          "prompt": {
+            "value": "Please select a category",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "de2bdd13b24c49fd8c900ecb1666dc7a",
+          "id": "75fabd40d79b41f2b9afcad79f7448c2",
+          "mode": "external",
+          "script": "(function execute() {\n\n    var categories = x_170623_hangman.Hangman.getCategories();\n    var options = [];\n    categories.forEach(function(category) {\n        options.push({ 'label': category, 'value': category});\n    });\n\n    return options;\n})()\n",
+          "noRecordsResponseMsg": {
+            "value": "No categories found",
+            "mode": "simple"
+          },
+          "condition": {
+            "value": "(function execute() {\n\n    var categories = x_170623_hangman.Hangman.getCategories();\n    var options = [];\n    categories.forEach(function(category) {\n        options.push({ 'label': category, 'value': category});\n    });\n\n    return options;\n})()\n",
+            "mode": "external_script"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "89653a53ee284af5853f15410461f4d5": {
+          "id": "89653a53ee284af5853f15410461f4d5",
+          "name": "Set up game",
+          "script": "(function execute() {\n    var game = new x_170623_hangman.Hangman(vaInputs.get_category.getValue());\n    vaVars.game_data = game._getGameObjectString();\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "1bd0512724c7425e950ebdbd1206231c": {
+          "id": "1bd0512724c7425e950ebdbd1206231c",
+          "stepType": "TextOutput",
+          "name": "Show guesses",
+          "value": {
+            "value": "(function execute() {\n    var go = JSON.parse(vaVars.game_data);\n\n    return go['display'];\n    \n})()\n",
+            "mode": "script"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "1611de298ef54f67a80ca6fc649c5c62": {
+          "id": "1611de298ef54f67a80ca6fc649c5c62",
+          "stepType": "Prompt",
+          "name": "Guess",
+          "prompt": {
+            "value": "Guess a letter",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "b524bd2456054fa5accfeb60f845e054",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          }
+        },
+        "49dea1a7eb69406fa2df5bd05e35e47a": {
+          "id": "49dea1a7eb69406fa2df5bd05e35e47a",
+          "name": "Process guess",
+          "script": "(function execute() {\n    var game_object = JSON.parse(vaVars.game_data);\n    var game = new x_170623_hangman.Hangman('', game_object);\n    game_object = game.guess(vaInputs.guess.toString());\n    vaVars.game_data = game._getGameObjectString();\n\n    if (game_object.already_guessed) {\n        vaVars.game_state = \"Duplicate\";\n    } else if (game_object.word_correct) {\n        vaVars.game_state = \"Word Correct\";\n    } else if (game_object.game_over) {\n        vaVars.game_state = \"Game Over\";\n    } else if (game_object.last_guess_correct) {\n        vaVars.game_state = \"Correct\";\n    } else {\n        vaVars.game_state = \"Incorrect\";\n    }\n\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "mode": "query",
+            "value": ""
+          }
+        },
+        "65989399ca734e679754c9851b372ceb": {
+          "id": "65989399ca734e679754c9851b372ceb",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "8942fa96bf814e5c8e0e78be297e7a3c": {
+          "id": "8942fa96bf814e5c8e0e78be297e7a3c",
+          "stepType": "TextOutput",
+          "name": "Congratulations",
+          "value": {
+            "value": "Congratulations, you guessed correctly.",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "0cab944abd7447aaa3c04602a7a66f35": {
+          "id": "0cab944abd7447aaa3c04602a7a66f35",
+          "stepType": "TextOutput",
+          "name": "Bad luck",
+          "value": {
+            "value": "Bad luck, you ran out of guesses",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "fff48107eec843d7bdede03c2ae8a1b0": {
+          "id": "fff48107eec843d7bdede03c2ae8a1b0",
+          "stepType": "TextOutput",
+          "name": "Correct guess",
+          "value": {
+            "value": "Correct guess",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "f5d08950971d41418cc0baf2e8954dc2": {
+          "id": "f5d08950971d41418cc0baf2e8954dc2",
+          "stepType": "Prompt",
+          "name": "Play again",
+          "prompt": {
+            "value": "Do you want to play again?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "ba26142f8c344010bad5a6faf456011d"
+        },
+        "ad79a527b4ff46fcb9a03c02fa350a30": {
+          "id": "ad79a527b4ff46fcb9a03c02fa350a30",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "24cbae81fdd24c6aa051d74adb13f415": {
+          "id": "24cbae81fdd24c6aa051d74adb13f415",
+          "stepType": "ScriptOutput",
+          "name": "Incorrect Guess",
+          "output_type": "single_part",
+          "script": "(function execute() {\n \n      var game_object = JSON.parse(vaVars.game_data);\n      if (game_object.guesses_left == 1) {\n          return gs.getMessage(\"That was incorrect.  You've only got one guess left!\");\n      } else {\n          return gs.getMessage(\"That was incorrect.  You have {0} guesses remaining.\", [game_object.guesses_left]);\n      }\n})()\n",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "a8258a0d72434966978cbf44a9872137",
+          "edgeType": "Edge",
+          "source": "24cbae81fdd24c6aa051d74adb13f415",
+          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "21938c2beeb54e2792af54c215d3f37f",
+          "edgeType": "Edge",
+          "source": "6025b4f4cb354acd98f89cbcb0400007",
+          "target": "75fabd40d79b41f2b9afcad79f7448c2",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "ffb07e13109c40d58613216ce8120c5a",
+          "edgeType": "Edge",
+          "source": "0cab944abd7447aaa3c04602a7a66f35",
+          "target": "f5d08950971d41418cc0baf2e8954dc2",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "21dcb25914c34069bda1783429c2452b",
+          "edgeType": "Edge",
+          "source": "1611de298ef54f67a80ca6fc649c5c62",
+          "target": "49dea1a7eb69406fa2df5bd05e35e47a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "3110dcb9c6b84ad09ee3989617883ac4",
+          "edgeType": "Edge",
+          "source": "75fabd40d79b41f2b9afcad79f7448c2",
+          "target": "89653a53ee284af5853f15410461f4d5",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "3188c661958a45f2b2bf7561ca627bde",
+          "edgeType": "Edge",
+          "source": "89653a53ee284af5853f15410461f4d5",
+          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e78018b5052149b1ba6eb1ad3100d45b",
+          "edgeType": "Edge",
+          "source": "1bd0512724c7425e950ebdbd1206231c",
+          "target": "1611de298ef54f67a80ca6fc649c5c62",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "25e61cda5cb54d789d98f2418d2038ca",
+          "edgeType": "Edge",
+          "source": "49dea1a7eb69406fa2df5bd05e35e47a",
+          "target": "65989399ca734e679754c9851b372ceb",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "378a2abd1432491aaf79da7c47408818",
+          "edgeType": "Branch",
+          "source": "65989399ca734e679754c9851b372ceb",
+          "target": "8942fa96bf814e5c8e0e78be297e7a3c",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.game_state == 'Word Correct';\n})()\n\n    \n"
+          },
+          "label": "Word  Guessed Correctly"
+        },
+        {
+          "id": "6a8e231250234de783297d31b6e90d84",
+          "edgeType": "Branch",
+          "source": "65989399ca734e679754c9851b372ceb",
+          "target": "0cab944abd7447aaa3c04602a7a66f35",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.game_state == 'Game Over';\n})()\n"
+          },
+          "label": "Game Over"
+        },
+        {
+          "id": "f452245a31d24b00947ad2daa9348da2",
+          "edgeType": "Branch",
+          "source": "65989399ca734e679754c9851b372ceb",
+          "target": "fff48107eec843d7bdede03c2ae8a1b0",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.game_state == 'Correct';\n})()\n"
+          },
+          "label": "Correct Letter"
+        },
+        {
+          "id": "010874a7d2f14c6d9dc45d0a0ae3554d",
+          "edgeType": "Edge",
+          "source": "fff48107eec843d7bdede03c2ae8a1b0",
+          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "93c386985d694c59b1482a780615728c",
+          "edgeType": "Branch",
+          "source": "65989399ca734e679754c9851b372ceb",
+          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.game_state == 'Duplicate';\n})()\n"
+          },
+          "label": "Duplicate Guess"
+        },
+        {
+          "id": "f43157860a644184a64e8b53a80b9110",
+          "edgeType": "Edge",
+          "source": "8942fa96bf814e5c8e0e78be297e7a3c",
+          "target": "f5d08950971d41418cc0baf2e8954dc2",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "75ba249bb80143b49daa8fb01d38cd1c",
+          "edgeType": "Edge",
+          "source": "f5d08950971d41418cc0baf2e8954dc2",
+          "target": "ad79a527b4ff46fcb9a03c02fa350a30",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "313c3b9949474308996592479a48e81e",
+          "edgeType": "Branch",
+          "source": "ad79a527b4ff46fcb9a03c02fa350a30",
+          "target": "021feb2a321844288c77753ba963faeb",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.play_again=",
+            "mode": "query"
+          },
+          "label": "Play Again - No"
+        },
+        {
+          "id": "d565d4bb08054b85873d4ffee80f8102",
+          "edgeType": "Branch",
+          "source": "ad79a527b4ff46fcb9a03c02fa350a30",
+          "target": "75fabd40d79b41f2b9afcad79f7448c2",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.play_again=true",
+            "mode": "query"
+          },
+          "label": "Play Again - Yes"
+        },
+        {
+          "id": "1148ac1347d34fd69e9aec3e219ce580",
+          "edgeType": "Branch",
+          "source": "65989399ca734e679754c9851b372ceb",
+          "target": "24cbae81fdd24c6aa051d74adb13f415",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.game_state == 'Incorrect';\n})()\n"
+          },
+          "label": "Incorrect Guess"
+        }
+      ]
+    }
+  },
+  "variables": {
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "de2bdd13b24c49fd8c900ecb1666dc7a": {
+      "id": "de2bdd13b24c49fd8c900ecb1666dc7a",
+      "name": "get_category",
+      "label": "Get Category",
+      "varType": "reference",
+      "table": "",
+      "category": "vaInputs"
+    },
+    "8cd267f8beaa423aac41ea4630eed1a8": {
+      "id": "8cd267f8beaa423aac41ea4630eed1a8",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "game_data",
+      "label": "game_data",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "b524bd2456054fa5accfeb60f845e054": {
+      "id": "b524bd2456054fa5accfeb60f845e054",
+      "name": "guess",
+      "label": "Guess",
+      "varType": "string",
+      "category": "vaInputs"
+    },
+    "b8b8694e20ed43068904505fb2b9b3ef": {
+      "id": "b8b8694e20ed43068904505fb2b9b3ef",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "game_state",
+      "label": "game_state",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "ba26142f8c344010bad5a6faf456011d": {
+      "id": "ba26142f8c344010bad5a6faf456011d",
+      "name": "play_again",
+      "label": "Play Again",
+      "varType": "boolean",
+      "category": "vaInputs"
+    }
+  }
+}</graph>
+        <key_phrases>Hangman,play,game</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <name>Hangman</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <roles/>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-15 13:52:29</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>6133bf5e2f812010a34c7f572799b685</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Hangman</sys_name>
+        <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
+        <sys_update_name>sys_cb_topic_6133bf5e2f812010a34c7f572799b685</sys_update_name>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-15 16:29:22</sys_updated_on>
+        <type>STANDARD</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=6133bf5e2f812010a34c7f572799b685"/>
+</record_update>
