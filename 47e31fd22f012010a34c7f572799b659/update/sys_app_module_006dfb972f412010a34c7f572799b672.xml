@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="System Properties">d546447bc0a8016900046469895b557a</application>
+        <assessment/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>DIRECT</link_type>
+        <map_page/>
+        <mobile_title>Hangman proper</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order/>
+        <override_menu_roles>false</override_menu_roles>
+        <query>system_properties_ui.do?sysparm_category=Hangman&amp;sysparm_domain_restore=false&amp;sysparm_stack=no&amp;sysparm_title=Hangman</query>
+        <report/>
+        <roles>x_170623_hangman.admin</roles>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-18 17:11:42</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>006dfb972f412010a34c7f572799b672</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Hangman Properties</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
+        <sys_update_name>sys_app_module_006dfb972f412010a34c7f572799b672</sys_update_name>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-18 17:11:42</sys_updated_on>
+        <timeline_page/>
+        <title>Hangman Properties</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+</record_update>
