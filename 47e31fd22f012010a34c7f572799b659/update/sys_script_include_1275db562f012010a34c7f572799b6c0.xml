@@ -9,7 +9,16 @@
         <name>Hangman</name>
         <script><![CDATA[var Hangman = Class.create();
 
+/* all word categories properties should be prefixed with this property */
 Hangman._property_prefix = 'x_170623_hangman.words.';
+
+/* constants for the game state */
+Hangman.GAMESTATE_CORRECT_GUESS = 'correct_guess';
+Hangman.GAMESTATE_INCORRECT_GUESS = 'incorrect_guess';
+Hangman.GAMESTATE_GAMEOVER_FAILED = 'game_failed';
+Hangman.GAMESTATE_GAMEOVER_SUCCESS = 'game_success';
+Hangman.GAMESTATE_DUPLICATE_GUESS = 'duplicate_guess';
+
 Hangman.getCategories = function() {
 	var categories = [];
 
@@ -26,24 +35,23 @@ Hangman.prototype = {
 
 	initialize: function(category, game_object) {
 		this.max_guesses = 6;
-		
+
 		this.category = category != undefined ? category : this.getRandomCategory();
 		if (game_object != undefined) {
 			this.game_object = game_object;
 		} else {
-			var word = category == 'test' ? 'TEST WORD' : this.getWord(this.category).toUpperCase();
 			
+			var word = category == 'test' ? 'TEST WORD' : this.getWord(this.category).toUpperCase();
+
 			this.game_object = game_object != undefined ? game_object : {
 				"category": this.category,
 				"word": word,
 				"correct_guesses": [],
 				"incorrect_guesses": [],
 				"guesses_left": this.max_guesses,
-				"last_guess_correct": false,
-				"already_guessed": false,
-				"word_correct": false,
-				"game_over": false,
-				"display": ''
+				"display": '',
+				"game_state": ''
+
 			};	
 			this.game_object.display = this.getDisplayWord();
 		}
@@ -55,48 +63,49 @@ Hangman.prototype = {
 		var letters = au.unique(this.game_object.word.replaceAll(' ', '').split(''));
 		var display_word = this.game_object.word.split('').join(' ');
 		var remaining = au.diff(letters, this.game_object.correct_guesses);
-		
+
 		remaining.forEach(function(letter) {
 			display_word = display_word.replaceAll(letter, '_');
 		});
-		
+
 		return display_word;
 	},
-	
+
 	guess: function(letter) {
 		var au = new global.ArrayUtil();
 		letter = letter.toUpperCase();
 
-		this.game_object.already_guessed = false;
-		this.game_object.last_guess_correct = false;
-		this.game_object.game_over = false;
-		this.game_object.word_correct = false;
-		
+		this.game_object.game_state = '';
+
 		var letters = au.unique(this.game_object.word.replace(' ', '').split(''));
-		
+
 		if (au.contains(this.game_object.correct_guesses, letter) ||
 			au.contains(this.game_object.incorrect_guesses, letter)) {
 			// already guessed this one
-			this.game_object.already_guessed = true;
+			this.game_object.game_state = Hangman.GAMESTATE_DUPLICATE_GUESS;
 		} else if (this.game_object.word.indexOf(letter) > -1) {
-			this.game_object.last_guess_correct = true;
+			this.game_object.game_state = Hangman.GAMESTATE_CORRECT_GUESS;
 			this.game_object.correct_guesses.push(letter);
 			this.game_object.correct_guesses = au.unique(this.game_object.correct_guesses).sort();
 
 			var letters_remaining = au.diff(letters, this.game_object.correct_guesses);
-			this.game_object.word_correct = letters_remaining.length == 0;
+			if (letters_remaining.length == 0) {
+				this.game_object.game_state = Hangman.GAMESTATE_GAMEOVER_SUCCESS;
+			}
+			
 			this.game_object.display = this.getDisplayWord();
 
 		} else {
-			this.game_object.last_guess_correct = false;
+			this.game_object.game_state = Hangman.GAMESTATE_INCORRECT_GUESS;
+			
 			this.game_object.incorrect_guesses.push(letter);
 			this.game_object.guesses_left = this.max_guesses - this.game_object.incorrect_guesses.length;
 			if(this.game_object.incorrect_guesses.length == this.max_guesses) {
-				this.game_object.game_over = true;
+				this.game_object.game_state = Hangman.GAMESTATE_GAMEOVER_FAILED;
 			}
 		}
 
-		return this.game_object;
+		return this._getGameObject();
 	},
 
 	_getGameObject: function() {
@@ -106,7 +115,7 @@ Hangman.prototype = {
 	_getGameObjectString: function() {
 		return JSON.stringify(this.game_object);
 	},
-	
+
 	getWord: function(category) {
 		var property = Hangman._property_prefix + category.replace(' ', '.');
 		var words = gs.getProperty(property);
@@ -127,13 +136,13 @@ Hangman.prototype = {
         <sys_created_by>aidan.cooper</sys_created_by>
         <sys_created_on>2020-12-15 11:53:05</sys_created_on>
         <sys_id>1275db562f012010a34c7f572799b6c0</sys_id>
-        <sys_mod_count>50</sys_mod_count>
+        <sys_mod_count>53</sys_mod_count>
         <sys_name>Hangman</sys_name>
         <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
         <sys_update_name>sys_script_include_1275db562f012010a34c7f572799b6c0</sys_update_name>
         <sys_updated_by>aidan.cooper</sys_updated_by>
-        <sys_updated_on>2020-12-15 16:20:33</sys_updated_on>
+        <sys_updated_on>2020-12-18 16:39:12</sys_updated_on>
     </sys_script_include>
 </record_update>
