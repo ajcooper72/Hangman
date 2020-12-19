@@ -34,7 +34,10 @@ Hangman.getCategories = function() {
 Hangman.prototype = {
 
 	initialize: function(category, game_object) {
-		this.max_guesses = 6;
+		this._image_prefix = gs.getProperty('x_170623_hangman.image.prefix');
+		this._image_count = parseInt(gs.getProperty('x_170623_hangman.image.count'));
+		this._image_offset = parseInt(gs.getProperty('x_170623_hangman.image.offset'));
+		this.max_guesses = this._image_count - this._image_offset - 1;
 
 		this.category = category != undefined ? category : this.getRandomCategory();
 		if (game_object != undefined) {
@@ -49,6 +52,7 @@ Hangman.prototype = {
 				"correct_guesses": [],
 				"incorrect_guesses": [],
 				"guesses_left": this.max_guesses,
+				"image": this._image_prefix + this._image_offset + '.png',
 				"display": '',
 				"game_state": ''
 
@@ -100,6 +104,8 @@ Hangman.prototype = {
 			
 			this.game_object.incorrect_guesses.push(letter);
 			this.game_object.guesses_left = this.max_guesses - this.game_object.incorrect_guesses.length;
+			var image_number = this._image_offset + this.game_object.incorrect_guesses.length;
+			this.game_object.image = this._image_prefix + image_number + '.png';
 			if(this.game_object.incorrect_guesses.length == this.max_guesses) {
 				this.game_object.game_state = Hangman.GAMESTATE_GAMEOVER_FAILED;
 			}
@@ -136,13 +142,13 @@ Hangman.prototype = {
         <sys_created_by>aidan.cooper</sys_created_by>
         <sys_created_on>2020-12-15 11:53:05</sys_created_on>
         <sys_id>1275db562f012010a34c7f572799b6c0</sys_id>
-        <sys_mod_count>53</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>Hangman</sys_name>
         <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
         <sys_update_name>sys_script_include_1275db562f012010a34c7f572799b6c0</sys_update_name>
         <sys_updated_by>aidan.cooper</sys_updated_by>
-        <sys_updated_on>2020-12-18 16:39:12</sys_updated_on>
+        <sys_updated_on>2020-12-19 13:16:27</sys_updated_on>
     </sys_script_include>
 </record_update>

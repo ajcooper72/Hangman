@@ -7,7 +7,7 @@
         <description/>
         <flexible_conversation_switching>false</flexible_conversation_switching>
         <graph>{
-  "graph_api_version": "1.0.21",
+  "graph_api_version": "1.0.21.pp4",
   "goals": {
     "primary": {
       "id": "primary",
@@ -83,19 +83,6 @@
           "name": "Set up game",
           "script": "(function execute() {\n    var game = new x_170623_hangman.Hangman(vaInputs.get_category.getValue());\n    vaVars.game_data = game._getGameObjectString();\n})()\n",
           "stepType": "ScriptAction",
-          "applicability": {
-            "value": "",
-            "mode": "query"
-          }
-        },
-        "1bd0512724c7425e950ebdbd1206231c": {
-          "id": "1bd0512724c7425e950ebdbd1206231c",
-          "stepType": "TextOutput",
-          "name": "Show guesses",
-          "value": {
-            "value": "(function execute() {\n    var go = JSON.parse(vaVars.game_data);\n\n    return go['display'];\n    \n})()\n",
-            "mode": "script"
-          },
           "applicability": {
             "value": "",
             "mode": "query"
@@ -238,14 +225,71 @@
             "value": "",
             "mode": "query"
           }
+        },
+        "ea812ac3542141c3a4c01337a75c5889": {
+          "id": "ea812ac3542141c3a4c01337a75c5889",
+          "stepType": "ImageOutput",
+          "name": "Image",
+          "url": {
+            "value": "(function execute() {\n    var go = JSON.parse(vaVars.game_data);\n\n    return gs.getProperty('glide.servlet.uri') + go['image'];;\n})()\n",
+            "mode": "script"
+          },
+          "variableId": "",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "1bd0512724c7425e950ebdbd1206231c": {
+          "id": "1bd0512724c7425e950ebdbd1206231c",
+          "stepType": "TextOutput",
+          "name": "Show guesses",
+          "value": {
+            "value": "(function execute() {\n    var go = JSON.parse(vaVars.game_data);\n\n    return go['display'];\n    \n})()\n",
+            "mode": "script"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "5177064577234f9f8d511f3e44a62e6f": {
+          "id": "5177064577234f9f8d511f3e44a62e6f",
+          "stepType": "ImageOutput",
+          "name": "Failed Image",
+          "url": {
+            "value": "(function execute() {\n    var go = JSON.parse(vaVars.game_data);\n\n    return gs.getProperty('glide.servlet.uri') + go['image'];;\n})()\n",
+            "mode": "script"
+          },
+          "variableId": "",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
         }
       },
       "edges": [
         {
+          "id": "25f4ca0cd4514640934a6e7439cc23e7",
+          "edgeType": "Edge",
+          "source": "ea812ac3542141c3a4c01337a75c5889",
+          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "3188c661958a45f2b2bf7561ca627bde",
+          "edgeType": "Edge",
+          "source": "89653a53ee284af5853f15410461f4d5",
+          "target": "ea812ac3542141c3a4c01337a75c5889",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
           "id": "a8258a0d72434966978cbf44a9872137",
           "edgeType": "Edge",
           "source": "24cbae81fdd24c6aa051d74adb13f415",
-          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "target": "ea812ac3542141c3a4c01337a75c5889",
           "sourcePort": "",
           "targetPort": ""
         },
@@ -282,22 +326,6 @@
           "targetPort": ""
         },
         {
-          "id": "3188c661958a45f2b2bf7561ca627bde",
-          "edgeType": "Edge",
-          "source": "89653a53ee284af5853f15410461f4d5",
-          "target": "1bd0512724c7425e950ebdbd1206231c",
-          "sourcePort": "",
-          "targetPort": ""
-        },
-        {
-          "id": "e78018b5052149b1ba6eb1ad3100d45b",
-          "edgeType": "Edge",
-          "source": "1bd0512724c7425e950ebdbd1206231c",
-          "target": "1611de298ef54f67a80ca6fc649c5c62",
-          "sourcePort": "",
-          "targetPort": ""
-        },
-        {
           "id": "25e61cda5cb54d789d98f2418d2038ca",
           "edgeType": "Edge",
           "source": "49dea1a7eb69406fa2df5bd05e35e47a",
@@ -319,19 +347,6 @@
           "label": "Game Over - Success"
         },
         {
-          "id": "6a8e231250234de783297d31b6e90d84",
-          "edgeType": "Branch",
-          "source": "65989399ca734e679754c9851b372ceb",
-          "target": "0cab944abd7447aaa3c04602a7a66f35",
-          "sourcePort": "",
-          "targetPort": "",
-          "expression": {
-            "mode": "script",
-            "value": "(function execute() {\n    return vaVars.game_state == 'game_failed';\n})()\n"
-          },
-          "label": "Game Over - Failed"
-        },
-        {
           "id": "f452245a31d24b00947ad2daa9348da2",
           "edgeType": "Branch",
           "source": "65989399ca734e679754c9851b372ceb",
@@ -348,7 +363,7 @@
           "id": "010874a7d2f14c6d9dc45d0a0ae3554d",
           "edgeType": "Edge",
           "source": "fff48107eec843d7bdede03c2ae8a1b0",
-          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "target": "ea812ac3542141c3a4c01337a75c5889",
           "sourcePort": "",
           "targetPort": ""
         },
@@ -356,7 +371,7 @@
           "id": "93c386985d694c59b1482a780615728c",
           "edgeType": "Branch",
           "source": "65989399ca734e679754c9851b372ceb",
-          "target": "1bd0512724c7425e950ebdbd1206231c",
+          "target": "ea812ac3542141c3a4c01337a75c5889",
           "sourcePort": "",
           "targetPort": "",
           "expression": {
@@ -419,6 +434,35 @@
             "value": "(function execute() {\n    return vaVars.game_state == 'incorrect_guess';\n})()\n"
           },
           "label": "Incorrect Guess"
+        },
+        {
+          "id": "2512b879b23f46bb9463ee9052d9be38",
+          "edgeType": "Edge",
+          "source": "1bd0512724c7425e950ebdbd1206231c",
+          "target": "1611de298ef54f67a80ca6fc649c5c62",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "6a8e231250234de783297d31b6e90d84",
+          "edgeType": "Branch",
+          "source": "65989399ca734e679754c9851b372ceb",
+          "target": "5177064577234f9f8d511f3e44a62e6f",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.game_state == 'game_failed';\n})()\n"
+          },
+          "label": "Game Over - Failed"
+        },
+        {
+          "id": "57ab0d29c99144e0a622326ca85c89bb",
+          "edgeType": "Edge",
+          "source": "5177064577234f9f8d511f3e44a62e6f",
+          "target": "0cab944abd7447aaa3c04602a7a66f35",
+          "sourcePort": "",
+          "targetPort": ""
         }
       ]
     }
@@ -494,14 +538,14 @@
         <sys_created_on>2020-12-15 13:52:29</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_id>6133bf5e2f812010a34c7f572799b685</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Hangman</sys_name>
         <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
         <sys_policy/>
         <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
         <sys_update_name>sys_cb_topic_6133bf5e2f812010a34c7f572799b685</sys_update_name>
         <sys_updated_by>aidan.cooper</sys_updated_by>
-        <sys_updated_on>2020-12-18 16:38:16</sys_updated_on>
+        <sys_updated_on>2020-12-19 14:04:43</sys_updated_on>
         <type>STANDARD</type>
         <variables/>
     </sys_cb_topic>

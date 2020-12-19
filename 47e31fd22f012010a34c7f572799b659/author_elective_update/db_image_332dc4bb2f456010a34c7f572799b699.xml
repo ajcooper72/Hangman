@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
+    <db_image action="DELETE">
+        <active>true</active>
+        <category>general</category>
+        <format>png</format>
+        <height>200</height>
+        <image>f21d04b32f456010a34c7f572799b666</image>
+        <name>hangman_guess_1.png</name>
+        <size_bytes>1968</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:58:22</sys_created_on>
+        <sys_id>332dc4bb2f456010a34c7f572799b699</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>hangman_guess_1.png</sys_name>
+        <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
+        <sys_update_name>db_image_332dc4bb2f456010a34c7f572799b699</sys_update_name>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-19 12:58:22</sys_updated_on>
+        <thumbnail/>
+        <width>200</width>
+    </db_image>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Hangman">47e31fd22f012010a34c7f572799b659</application>
+        <file_path/>
+        <instance_id>61ef8e09db07374052cec597059619bc</instance_id>
+        <instance_name>dev90339</instance_name>
+        <name>db_image_332dc4bb2f456010a34c7f572799b699</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image"><db_image action="INSERT_OR_UPDATE"><active>true</active><category>general</category><format>png</format><height>200</height><image>f21d04b32f456010a34c7f572799b666</image><name>hangman_guess_1.png</name><size_bytes>1968</size_bytes><sys_class_name>db_image</sys_class_name><sys_created_by>aidan.cooper</sys_created_by><sys_created_on>2020-12-19 12:58:22</sys_created_on><sys_id>332dc4bb2f456010a34c7f572799b699</sys_id><sys_mod_count>0</sys_mod_count><sys_name>hangman_guess_1.png</sys_name><sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package><sys_policy/><sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope><sys_update_name>db_image_332dc4bb2f456010a34c7f572799b699</sys_update_name><sys_updated_by>aidan.cooper</sys_updated_by><sys_updated_on>2020-12-19 12:58:22</sys_updated_on><thumbnail/><width>200</width></db_image></record_update>]]></payload>
+        <payload_hash>164123171</payload_hash>
+        <record_name>hangman_guess_1.png</record_name>
+        <reverted_from/>
+        <source>071794e62f452010a34c7f572799b65e</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:58:22</sys_created_on>
+        <sys_id>bf2dc4bb2f456010a34c7f572799b69a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1767b14633c0000001</sys_recorded_at>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-19 12:58:22</sys_updated_on>
+        <type>Images</type>
+        <update_guid>b72dc4bbd8456010240889331820739a</update_guid>
+        <update_guid_history>b72dc4bbd8456010240889331820739a:164123171</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="hangman_guess_1.png">1b3d40332f456010a34c7f572799b62b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:58:37</sys_created_on>
+        <sys_db_object display_value="" name="db_image">db_image</sys_db_object>
+        <sys_id>90916d9013cd414a9dafd4833706f261</sys_id>
+        <sys_metadata>332dc4bb2f456010a34c7f572799b699</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>hangman_guess_1.png</sys_name>
+        <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
+        <sys_scope_delete display_value="">966f941982cb48d3afbb304a5f73a339</sys_scope_delete>
+        <sys_update_name>db_image_332dc4bb2f456010a34c7f572799b699</sys_update_name>
+        <sys_update_version display_value="db_image_332dc4bb2f456010a34c7f572799b699">bf2dc4bb2f456010a34c7f572799b69a</sys_update_version>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-19 12:58:37</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

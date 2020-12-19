@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <format>png</format>
+        <height>200</height>
+        <image>f21d04b32f456010a34c7f572799b666</image>
+        <name>hangman_guess_0.png</name>
+        <size_bytes>1968</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:57:51</sys_created_on>
+        <sys_id>fafcc4bb2f456010a34c7f572799b693</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>hangman_guess_0.png</sys_name>
+        <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
+        <sys_update_name>db_image_fafcc4bb2f456010a34c7f572799b693</sys_update_name>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-19 12:58:02</sys_updated_on>
+        <thumbnail/>
+        <width>200</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#0</average_image_color>
+        <chunk_size_bytes>700000</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>image</file_name>
+        <hash>d6ea2f3f3b64c623608f73cbed9d0bcd4fae8bda42d039220c525e75836e68ad</hash>
+        <image_height>200</image_height>
+        <image_width>200</image_width>
+        <size_bytes>1968</size_bytes>
+        <size_compressed>665</size_compressed>
+        <state>available</state>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:58:01</sys_created_on>
+        <sys_id>f21d04b32f456010a34c7f572799b666</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-19 12:58:02</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>fafcc4bb2f456010a34c7f572799b693</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="f21d04b32f456010a34c7f572799b666">f21d04b32f456010a34c7f572799b666</sys_attachment>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:58:01</sys_created_on>
+        <sys_id>361d04b32f456010a34c7f572799b666</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>7VNBi9NAFJ60uq7VPbh6WFbBEC+L0EySuiwNbcBt3G3BrqVbIXvbtJ26cZtMTLI0Cx6sKOpFEDyIiPQogvUviF72tOh/EMGDV8GbM0m6LSH1LuyEmfnmve97b2Yy71ltY30us5gBAMxVymqdzAe0z86Q8YM2fEsmxq2vr4Lh4aWfZPEZaZVOtQquEjwLTjHzIE0p5APMIjgZYACazMUjfJdZijgpMoh0BOdIdxgpwBdIf/TEACci/isQtnK0Duaa4aOuqXvYYXN8npcAkARJkEVJFvMsHSU5twJAesCM9zNIHcU8GKTHmAZ/ubTzlEyn7fKWC8CZ87Qz4PWbBRLjvdHQPK16U25hk9fbuIl437SDPRV8mUATeTrrm13Llf0iFzBkgqkZcmxA8XaLnFatsSXsIHaZv8YLnJJhWbbgtDtyXV2L5GRV5HY8z5Yh7PV6fC/HY+cOFPP5PBQkKElZwsi6+5an+1nLvRIGGcVRkdtyDNszsMXStd7Ee16R4yJO2MJEntEZZ7Lc6FjkgJB6oMgLMEmGfGOKjHqmysgFJKt83Q5FylhVoDuQ68jF3T16lNuW4SlSASaZ46qtsV9ZGWkmjXGBliTQ/iG45RiI3H7gEyP+pC3OL2HTdpDrUt9yxJ+0TfDpFcrBw95SDRNZgV8ShAJM9MSVJdzFzqattxDdWNyUmEebmkdLzEP+o1xyEC27BsZdJV6FBRhnxMRV3DY6+6ruIYXWa1aUsmK+MarXUD7BGT1uGHvdYenAqHaUDBGO6lDJ7P5+fh+A1LeKer3hM7++9mmhfhn82bz8/XFN//SASc+cXRC2j8Ex+H9A/2OfufcDMC/eHa7R91y5saEOV7cf/gXDK2dgsAcAAA==</data>
+        <length>876</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="f21d04b32f456010a34c7f572799b666">f21d04b32f456010a34c7f572799b666</sys_attachment>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:58:01</sys_created_on>
+        <sys_id>b61d04b32f456010a34c7f572799b666</sys_id>
+    </sys_attachment_doc>
+</record_update>

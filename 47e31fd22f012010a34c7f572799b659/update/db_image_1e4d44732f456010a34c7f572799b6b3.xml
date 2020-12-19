@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <format>png</format>
+        <height>200</height>
+        <image>455d8cbb2f456010a34c7f572799b631</image>
+        <name>hangman_guess_1.png</name>
+        <size_bytes>2281</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:58:54</sys_created_on>
+        <sys_id>1e4d44732f456010a34c7f572799b6b3</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>hangman_guess_1.png</sys_name>
+        <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
+        <sys_update_name>db_image_1e4d44732f456010a34c7f572799b6b3</sys_update_name>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-19 12:59:00</sys_updated_on>
+        <thumbnail/>
+        <width>200</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#6699</average_image_color>
+        <chunk_size_bytes>700000</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>image</file_name>
+        <hash>bfb804f0b6f6b2ae1609537afa363a40a8fb69434ff31735cf5dc00f0bb5a1b0</hash>
+        <image_height>200</image_height>
+        <image_width>200</image_width>
+        <size_bytes>2281</size_bytes>
+        <size_compressed>1039</size_compressed>
+        <state>available</state>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:59:00</sys_created_on>
+        <sys_id>455d8cbb2f456010a34c7f572799b631</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>aidan.cooper</sys_updated_by>
+        <sys_updated_on>2020-12-19 12:59:00</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>1e4d44732f456010a34c7f572799b6b3</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="455d8cbb2f456010a34c7f572799b631">455d8cbb2f456010a34c7f572799b631</sys_attachment>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:59:00</sys_created_on>
+        <sys_id>855d8cbb2f456010a34c7f572799b631</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>6wzwc+flkuJiYGDg9fRwCQLSJ0CYgw1Iro1YNw9IMRYHuTsxrDsn8xLIOZQa4Znm68ugBWRzMLAzCjEwg5QAIQOjFAMrmM3AkMQoDWdnMWpA1TABCUMQySAIxEWMRmC2CBC3tGcysEDVz2CAAA8oH0wHZFak5uQmluQXKRjrWeoZMTAYGRgZWBkaWRlaKoBIIytLcwYG5gWMCPcsYIKbeWIBM4INMlxkcv43IMVZ4BFZzMDALQzCjAyz5kgAzViVGRJREuHrY5Wcn6uXmJKflKpXkVsAdpNNhRWQmZtakqhQkZuTV2xVYasEVmEFZIOE9ZUUwEpKsm2VInwDFJzzi1IVTPVM9AyU7LgUFBRsilLSrIJc3KDagTxbpYySkgIrff3y8nK9cmO9/KJ0fUNLS0t9AyN9IyNdoArd4sq8ksQK3bxiZYghMHNcUouTizILSjLz8xRA/MSk/NISWyUlqBoIgFhUkpmGsCmvGOotoAf1QTL6hnoG+ti0pVZk4tAGksGpDRgA2HVVJBZANNkhdNmAXGAVlFqcn1MK8kpoXmaJnZGNPjZhdF2RCHk7c5geZEF0DRHYNETg0eBflJkKDH2wnCFUPbIYunrn/NyCotTiYpCcKVQ9shiSelAQWoETdqRLZm5qHljeyMDARh+rDLpO5/yc/KLggsTkVJDD0IWw2hOB054IrPYA49HKuSgVlO1C8vNz7NBzoY0+ugo0zb75KZlplS6JJal2oPyqa2ika2gZAsuvEO1IamCJWx8tdUOyjj4079hxATXC8qEd15w5C4oYGFi4PF0cQyoY317fmyXqKMLwYPPrtFADoUuc/xoeGEdk3RJpUmiau3du742l3zTfvN0q1Dy3qXVuQuKGXt+mpp03dz/emZ/A9XzdG/OCXbFpz6yfn3nnIsHCIaDg0MDAyDTKGGVgZTiENi57lZM+88273XrrjoTxLA9XPlW2xbd82nXb3/LcPY/dXIoNZ1l0ptb0nv2nEPfuT9zxvmU3Faqrc2t21toe+5a5yObEjVMZ1xlTzm3lWFNUq5d8Ru2nWPJnnTq+9Y/PvvN8e9Xnc4jdjsvukW/Ujk3m6Q3crbXMOF5aNS91sk2/t/T8osj72fq5s45+196lcfbskRnPfmWlZ377PDX7oq755/Ddv+TPu3B/KJi4/Fj7mu7HN6+zNYhoyCvvkq/U19xquar8yf1cA/+u3/nbF8u/e7rwo0Zjnopf3J1NuT2WILcoPjYJ/mfnVSnY/vf5jfuSWfl1h1in+36q+F8jo6vnfl3t2o5dWyQ3C2jMfL2xf5t8ksyn04U1Iuvl9NI3ls5WGcB4+dd5QF6l2ONxLvvxYFCN7enq57LOKaEJAN4xCTvpCAAA</data>
+        <length>1372</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="455d8cbb2f456010a34c7f572799b631">455d8cbb2f456010a34c7f572799b631</sys_attachment>
+        <sys_created_by>aidan.cooper</sys_created_by>
+        <sys_created_on>2020-12-19 12:59:00</sys_created_on>
+        <sys_id>095d8cbb2f456010a34c7f572799b631</sys_id>
+    </sys_attachment_doc>
+</record_update>
