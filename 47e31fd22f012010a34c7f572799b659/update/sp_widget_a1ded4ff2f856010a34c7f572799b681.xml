@@ -16,6 +16,7 @@
 
 	c.submitGuess = function() {
 
+		var guessField = document.getElementById("entry_guess");
 		c.server.get({'guess':c.data.guess, 'game_data':JSON.stringify(c.data.game_data)}).then(function(r) {  
 			c.data.game_data = r.data.game_data;
 			c.data.display = $sce.trustAsHtml(c.data.game_data.display.replaceAll(' ', '&nbsp;'));
@@ -23,14 +24,25 @@
 			c.data.incorrect_guesses = c.data.game_data.incorrect_guesses.join(', ');
 		});
 
+
+		guessField.focus();
 	};
 	
 	c.resetGame = function() {
-		c.data.game_date = '';
+		c.data.game_data = '';
 		c.data.selected_category = '';
 		c.data.incorrect_guesses = '';
-	}
+	};
 
+	c.guessValidate = function() {
+		c.data.guess = c.data.guess.toUpperCase();
+		if (c.data.guess.length > 1) {
+			c.data.guess = c.data.guess.substr(-1);
+		}
+		if (/[\d{A-Z}]/.exec(c.data.guess) == null) {
+			c.data.guess = '';
+		}
+	};
 
 };]]></client_script>
         <controller_as>c</controller_as>
@@ -137,14 +149,14 @@
         <sys_created_by>aidan.cooper</sys_created_by>
         <sys_created_on>2020-12-19 14:15:29</sys_created_on>
         <sys_id>a1ded4ff2f856010a34c7f572799b681</sys_id>
-        <sys_mod_count>79</sys_mod_count>
+        <sys_mod_count>92</sys_mod_count>
         <sys_name>Hangman</sys_name>
         <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
         <sys_policy/>
         <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
         <sys_update_name>sp_widget_a1ded4ff2f856010a34c7f572799b681</sys_update_name>
         <sys_updated_by>aidan.cooper</sys_updated_by>
-        <sys_updated_on>2020-12-19 16:09:42</sys_updated_on>
+        <sys_updated_on>2020-12-20 12:54:25</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default">
 
   <div class="panel-heading" 
@@ -175,14 +187,29 @@
       <div class="guesses" ng-bind-html="c.data.display" />
 
       <div class="game_entry" ng-show="c.data.game_data.game_state != 'game_failed' && c.data.game_data.game_state != 'game_success'">
-        <input type="text" class="entry-field" ng-model="c.data.guess" />
-        <input type="button" class="entry-button" ng-click="c.submitGuess()" value="${Submit}"/>
+        <input id="entry_guess"
+               type="text" 
+               class="entry-field" 
+               ng-model="c.data.guess"
+               ng-required="true"
+               ng-change="c.guessValidate()" />
+
+        <input type="button" 
+               class="entry-button" 
+               ng-click="c.submitGuess()" 
+               value="${Submit}"
+               ng-disabled="c.data.guess == ''" />
+
         <div class="correct_guess" ng-show="c.data.game_data.game_state == 'correct_guess'">${Correct!}</div>
         <div class="incorrect_guess" ng-show="c.data.game_data.game_state == 'incorrect_guess'">${Incorrect!}</div>
 
         <div class="incorrect_guesses" ng-show="c.data.incorrect_guesses != ''">
           ${Wrong guesses: }{{ c.data.incorrect_guesses }}
         </div>
+        <div>
+          <a href='#' ng-click='c.resetGame()'>${Restart}</a>	  
+        </div>
+
       </div>
 
       <div class="success" ng-show="c.data.game_data.game_state == 'game_success'">

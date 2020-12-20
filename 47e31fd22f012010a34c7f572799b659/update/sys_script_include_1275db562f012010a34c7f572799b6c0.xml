@@ -43,7 +43,7 @@ Hangman.prototype = {
 		if (game_object != undefined) {
 			this.game_object = game_object;
 		} else {
-			
+
 			var word = category == 'test' ? 'TEST WORD' : this.getWord(this.category).toUpperCase();
 
 			this.game_object = game_object != undefined ? game_object : {
@@ -77,7 +77,7 @@ Hangman.prototype = {
 
 	guess: function(letter) {
 		var au = new global.ArrayUtil();
-		letter = letter.toUpperCase();
+		letter = letter.toUpperCase().substr(0,1);
 
 		this.game_object.game_state = '';
 
@@ -96,12 +96,12 @@ Hangman.prototype = {
 			if (letters_remaining.length == 0) {
 				this.game_object.game_state = Hangman.GAMESTATE_GAMEOVER_SUCCESS;
 			}
-			
+
 			this.game_object.display = this.getDisplayWord();
 
 		} else {
 			this.game_object.game_state = Hangman.GAMESTATE_INCORRECT_GUESS;
-			
+
 			this.game_object.incorrect_guesses.push(letter);
 			this.game_object.guesses_left = this.max_guesses - this.game_object.incorrect_guesses.length;
 			var image_number = this._image_offset + this.game_object.incorrect_guesses.length;
@@ -142,13 +142,13 @@ Hangman.prototype = {
         <sys_created_by>aidan.cooper</sys_created_by>
         <sys_created_on>2020-12-15 11:53:05</sys_created_on>
         <sys_id>1275db562f012010a34c7f572799b6c0</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>60</sys_mod_count>
         <sys_name>Hangman</sys_name>
         <sys_package display_value="Hangman" source="x_170623_hangman">47e31fd22f012010a34c7f572799b659</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Hangman">47e31fd22f012010a34c7f572799b659</sys_scope>
         <sys_update_name>sys_script_include_1275db562f012010a34c7f572799b6c0</sys_update_name>
         <sys_updated_by>aidan.cooper</sys_updated_by>
-        <sys_updated_on>2020-12-19 13:16:27</sys_updated_on>
+        <sys_updated_on>2020-12-20 12:26:31</sys_updated_on>
     </sys_script_include>
 </record_update>
