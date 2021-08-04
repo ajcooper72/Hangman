@@ -27,6 +27,7 @@
         <chunk_size_bytes>700000</chunk_size_bytes>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
+        <encryption_context/>
         <file_name>image</file_name>
         <hash>650408260ad58d60867df0bfb5c08417e5375f4126b81567390c7bee0b42e052</hash>
         <image_height>200</image_height>
